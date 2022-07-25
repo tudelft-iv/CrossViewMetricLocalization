@@ -14,3 +14,5 @@ The produced probabilities are correlated with localization accuracy,
 and can even be used to roughly estimate the ground camera's heading when its orientation is unknown.
 Overall, our method reduces the median metric localization error by 51\%, 37\%, and 28\% compared to the state-of-the-art when generalizing respectively in the same area, across areas, and across time. 
 
+### Models
+Our trained models can be find at: https://surfdrive.surf.nl/files/index.php/s/hcv8U9TzbfpX3lk
