@@ -6,7 +6,7 @@ import random
 import math
 
 
-class InputData:
+class DataLoader:
     def __init__(self, train_test):
         self.train_test = train_test
         self.grd_image_root = '/scratch/zxia/datasets/Oxford_5m_sampling/' # path to the ground images

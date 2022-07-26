@@ -11,7 +11,7 @@ import copy
 import tensorflow as tf
 from tensorflow.python.ops.gen_math_ops import *
 from model import CVML
-from readdata_Oxford import InputData
+from readdata_Oxford import DataLoader
 
 load_model_path = './model.ckpt'
 
@@ -20,7 +20,7 @@ batch_size = 16
 dimension = 8
 is_training = False
 tf.reset_default_graph()
-input_data = InputData('test')
+input_data = DataLoader('test')
     
 # Define placeholers
 sat = tf.placeholder(tf.float32, [None, 512, 512, 3], name='sat')
