@@ -1,9 +1,9 @@
 import os
 os.environ['CUDA_DEVICE_ORDER'] = 'PCI_BUS_ID'
 os.environ['CUDA_VISIBLE_DEVICES'] = "0"
-os.environ["MKL_NUM_THREADS"] = "3" 
-os.environ["NUMEXPR_NUM_THREADS"] = "3" 
-os.environ["OMP_NUM_THREADS"] = "3" 
+# os.environ["MKL_NUM_THREADS"] = "3" 
+# os.environ["NUMEXPR_NUM_THREADS"] = "3" 
+# os.environ["OMP_NUM_THREADS"] = "3" 
 import cv2
 import random
 import numpy as np
@@ -32,7 +32,7 @@ dimension = 8
 beta = 1e4
 temperature=0.1
 label = 'OxfordRobotCar'
-save_model_path = '/scratch/zxia/checkpoints/ccvm/Trained/'
+save_model_path = './models/'
 
 def contrastive_loss(scores, labels, temperature=1.0):
     """Contrastive loss over matching score. Adapted from https://arxiv.org/pdf/2004.11362.pdf Eq.2
@@ -75,10 +75,8 @@ def train(start_epoch=0, learning_rate_val=learning_rate_val):
     gt_reshaped = tf.reshape(gt, [tf.shape(logits)[0], 512*512])
     gt_reshaped = gt_reshaped / tf.reduce_sum(gt_reshaped, axis=1, keepdims=True)
     loss_heatmap = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=gt_reshaped, logits=logits_reshaped))
-    loss_heatmap_summary = tf.summary.scalar('loss_heatmap', loss_heatmap)
     
     loss_bottleneck = contrastive_loss(matching_score, gt_bottleneck, temperature)
-    loss_bottleneck_summary = tf.summary.scalar('loss_bottleneck', loss_bottleneck)
     
     loss = loss_heatmap + loss_bottleneck*beta
     loss_summary = tf.summary.scalar('loss', loss)
@@ -106,7 +104,7 @@ def train(start_epoch=0, learning_rate_val=learning_rate_val):
         print('load model...')
 
         if start_epoch == 0:
-            load_model_path_init = '/scratch/zxia/checkpoints/ccvm/Initialize/initial_model.ckpt'
+            load_model_path_init = save_model_path+'Initialize/initial_model.ckpt'
             variables_to_restore_init = tf.contrib.framework.get_variables_to_restore(include=['VGG_grd','VGG_sat'])
             init_fn = tf.contrib.framework.assign_from_checkpoint_fn(load_model_path_init, variables_to_restore_init)
             init_fn(sess)
@@ -120,7 +118,7 @@ def train(start_epoch=0, learning_rate_val=learning_rate_val):
             print('load model...FINISHED')
 
         # Define tensorboard writer
-        logdir = '/scratch/zxia/checkpoints/ccvm/graph/'+label
+        logdir = './graph/'+label
         if not os.path.exists(logdir):
             os.makedirs(logdir)
         graph = tf.get_default_graph()
