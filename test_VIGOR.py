@@ -8,8 +8,6 @@ import cv2
 import random
 import numpy as np
 import copy
-import scipy
-import scipy.stats as stats
 import tensorflow as tf
 from tensorflow.python.ops.gen_math_ops import *
 from model import *
