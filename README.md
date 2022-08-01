@@ -16,3 +16,16 @@ Overall, our method reduces the median metric localization error by 51\%, 37\%, 
 
 ### Models
 Our trained models can be find at: https://surfdrive.surf.nl/files/index.php/s/hcv8U9TzbfpX3lk
+
+### Training and evaluation
+Training on VIGOR dataset, <br />
+samearea split: `python train_VIGOR.py -a same` <br />
+crossarea split: `python train_VIGOR.py -a cross` <br />
+Testing on VIGOR dataset, <br />
+samearea split: `python test_VIGOR.py -a same` <br />
+crossarea split: `python test_VIGOR.py -a cross`<br />
+
+Training on Oxford RobotCar dataset: <br />
+`python train_Oxford.py` <br />
+Testing on Oxford RobotCar dataset: <br />
+`python test_Oxford.py` <br />
