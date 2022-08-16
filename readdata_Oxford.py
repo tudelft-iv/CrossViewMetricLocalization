@@ -146,8 +146,8 @@ class DataLoader:
             row_pixel = int(np.round(image_coord[1] - 400*row_split))
             
             img = self.full_satellite_map[row_split*400-200:row_split*400+800+200, col_split*400-200:col_split*400+800+200, :] # read extra 200 pixels at each side to avoid blank after rotation
-            rand_rotate = self.val_yaw[img_idx]/np.pi*180-90
-            rot_matrix = cv2.getRotationMatrix2D((600, 600), rand_rotate, 1) # rotate satellite image
+            rotate_angle = self.val_yaw[img_idx]/np.pi*180-90
+            rot_matrix = cv2.getRotationMatrix2D((600, 600), rotate_angle, 1) # rotate satellite image
             img = cv2.warpAffine(img, rot_matrix, (1200, 1200))
             img = img[200:1000, 200:1000, :]
             img = cv2.resize(img, (512, 512), interpolation=cv2.INTER_AREA)
@@ -165,7 +165,7 @@ class DataLoader:
             d = np.sqrt(x*x+y*y)
             sigma, mu = 4, 0.0
             img = np.exp(-( (d-mu)**2 / ( 2.0 * sigma**2 ) ) )
-            rot_matrix = cv2.getRotationMatrix2D((256, 256), rand_rotate, 1) # apply the same rotation on GT heat map
+            rot_matrix = cv2.getRotationMatrix2D((256, 256), rotate_angle, 1) # apply the same rotation on GT heat map
             img = cv2.warpAffine(img, rot_matrix, (512, 512))
             batch_gt[i, :, :, 0] = img
         
@@ -226,8 +226,8 @@ class DataLoader:
 
             # crop a satellite patch centered at the location of the ground image offseted by a randomly generated amount
             img = self.full_satellite_map[sat_coord_row-400-200:sat_coord_row+400+200, sat_coord_col-400-200:sat_coord_col+400+200, :] # load at each side extra 200 pixels to avoid blank after rotation
-            rand_rotate = self.train_yaw[img_idx]/np.pi*180-90
-            rot_matrix = cv2.getRotationMatrix2D((600, 600), rand_rotate, 1) # randomly rotate satellite image
+            rotate_angle = self.train_yaw[img_idx]/np.pi*180-90
+            rot_matrix = cv2.getRotationMatrix2D((600, 600), rotate_angle, 1) 
             img = cv2.warpAffine(img, rot_matrix, (1200, 1200))
             img = img[200:1000, 200:1000, :]
 
@@ -245,7 +245,7 @@ class DataLoader:
             d = np.sqrt(x*x+y*y)
             sigma, mu = 4, 0.0
             img = np.exp(-( (d-mu)**2 / ( 2.0 * sigma**2 ) ) )
-            rot_matrix = cv2.getRotationMatrix2D((256, 256), rand_rotate, 1) # randomly rotate satellite image
+            rot_matrix = cv2.getRotationMatrix2D((256, 256), rotate_angle, 1) 
             img = cv2.warpAffine(img, rot_matrix, (512, 512))
             batch_gt[batch_idx, :, :, 0] = img
             
