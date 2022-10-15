@@ -14,14 +14,27 @@ The produced probabilities are correlated with localization accuracy,
 and can even be used to roughly estimate the ground camera's heading when its orientation is unknown.
 Overall, our method reduces the median metric localization error by 51\%, 37\%, and 28\% compared to the state-of-the-art when generalizing respectively in the same area, across areas, and across time. 
 
+### Environment
+We use TensorFlow 1.14 with cuda 10.1.
+
 ### Models
 Our trained models can be find at: https://surfdrive.surf.nl/files/index.php/s/hcv8U9TzbfpX3lk
 
+### Datasets
+VIGOR: we download the VIGOR dataset from https://github.com/Jeff-Zilence/VIGOR <br />
+
+Oxford RobotCar cross-view matching: please download the (Bumblebee XB3, stereo, center) ground images from the official Oxford RobotCar: https://robotcar-dataset.robots.ox.ac.uk/datasets/ <br />
+The original ground images are taken at a very high framerate. For training, validation, and testing, we provide `data_preprocessing_Oxford.py` to select the used ground images, remove the distorted area and vehicle bonnet around image borders, and save images with their UTM coordinates. <br />
+We stitched satellite patches to build a large satellite map that covers the whole area. Our stitched image can be found at https://surfdrive.surf.nl/files/index.php/s/2U0GsLiDbWrBlwr <br />
+(We will release the original satellite patches and code for stitching the images soon.) <br />
+In `readdata_Oxford.py`, we provide code to convert the pixel coordinates of the stitched satellite image to UTM coordinates.
+
+
 ### Training and evaluation
-Training on VIGOR dataset, <br />
+Training on VIGOR dataset: <br />
 samearea split: `python train_VIGOR.py -a same` <br />
 crossarea split: `python train_VIGOR.py -a cross` <br />
-Testing on VIGOR dataset, <br />
+Testing on VIGOR dataset: <br />
 samearea split: `python test_VIGOR.py -a same` <br />
 crossarea split: `python test_VIGOR.py -a cross`<br />
 
@@ -29,3 +42,15 @@ Training on Oxford RobotCar dataset: <br />
 `python train_Oxford.py` <br />
 Testing on Oxford RobotCar dataset: <br />
 `python test_Oxford.py` <br />
+
+
+### Citations
+We will update it with the ECCV citation later:
+```
+@article{xia2022visual,
+  title={Visual Cross-View Metric Localization with Dense Uncertainty Estimates},
+  author={Xia, Zimin and Booij, Olaf and Manfredi, Marco and Kooij, Julian FP},
+  journal={arXiv preprint arXiv:2208.08519},
+  year={2022}
+}
+```
