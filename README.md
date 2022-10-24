@@ -26,7 +26,7 @@ VIGOR: we download the VIGOR dataset from https://github.com/Jeff-Zilence/VIGOR 
 Oxford RobotCar cross-view matching: please download the (Bumblebee XB3, stereo, center) ground images from the official Oxford RobotCar: https://robotcar-dataset.robots.ox.ac.uk/datasets/ <br />
 The original ground images are taken at a very high framerate. For training, validation, and testing, we provide `data_preprocessing_Oxford.py` to select the used ground images, remove the distorted area and vehicle bonnet around image borders, and save images with their UTM coordinates. <br />
 We stitched satellite patches to build a large satellite map that covers the whole area. Our stitched image can be found at https://surfdrive.surf.nl/files/index.php/s/2U0GsLiDbWrBlwr <br />
-(We will release the original satellite patches and code for stitching the images soon.) <br />
+The code for stitching satellite images can be found in `stitching_satellite_patches.ipynb` <br />
 In `readdata_Oxford.py`, we provide code to convert the pixel coordinates of the stitched satellite image to UTM coordinates.
 
 
