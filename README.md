@@ -45,12 +45,13 @@ Testing on Oxford RobotCar dataset: <br />
 
 
 ### Citations
-We will update it with the ECCV citation later:
 ```
-@article{xia2022visual,
+@inproceedings{xia2022visual,
   title={Visual Cross-View Metric Localization with Dense Uncertainty Estimates},
   author={Xia, Zimin and Booij, Olaf and Manfredi, Marco and Kooij, Julian FP},
-  journal={arXiv preprint arXiv:2208.08519},
-  year={2022}
+  booktitle={European Conference on Computer Vision},
+  pages={90--106},
+  year={2022},
+  organization={Springer}
 }
 ```
