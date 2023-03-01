@@ -60,7 +60,7 @@ with tf.Session() as sess:
             distance.append(np.sqrt((loc_gt[0]-loc_pred[0])**2+(loc_gt[1]-loc_pred[1])**2)) 
 
 
-print('mean distance error (m): ', np.mean(distance)*0.1235)
-print('median distance error (m): ', np.median(distance)*0.1235)
+print('mean distance error (m): ', np.mean(distance)*0.0924/512*800) 
+print('median distance error (m): ', np.median(distance)*0.0924/512*800)
 print('mean probability at GT: ', np.mean(probability_at_gt))
 print('median probability at GT: ', np.median(probability_at_gt))
