@@ -1,5 +1,7 @@
 # ECCV2022: Visual Cross-View Metric Localization with Dense Uncertainty Estimates
 
+## Update! Check out our improved model with more accurate localization and joint orientation estimation at https://github.com/tudelft-iv/CCVPE
+
 ![](figures/network_architecture.png)
 
 ### Abstract
