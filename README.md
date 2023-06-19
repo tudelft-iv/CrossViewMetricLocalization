@@ -1,4 +1,5 @@
 # ECCV2022: Visual Cross-View Metric Localization with Dense Uncertainty Estimates
+[[`Paper`](https://arxiv.org/abs/2208.08519)] [[`Presentation`](https://www.youtube.com/watch?v=BnVEk-Mp0xU)] [[`BibTeX`](#citation)]
 
 ## Update! Check out our improved model with more accurate localization and joint orientation estimation at https://github.com/tudelft-iv/CCVPE
 
@@ -47,7 +48,7 @@ Testing on Oxford RobotCar dataset: <br />
 `python test_Oxford.py` <br />
 
 
-### Citations
+### Citation
 ```
 @inproceedings{xia2022visual,
   title={Visual Cross-View Metric Localization with Dense Uncertainty Estimates},
